@@ -20,3 +20,5 @@ source "$BR2_EXTERNAL_HAOS_PATH/package/tempio/Config.in.host"
 source "$BR2_EXTERNAL_HAOS_PATH/package/udisks2/Config.in"
 source "$BR2_EXTERNAL_HAOS_PATH/package/vcgencmd/Config.in"
 source "$BR2_EXTERNAL_HAOS_PATH/package/xe-guest-utilities/Config.in"
+source "$BR2_EXTERNAL_HAOS_PATH/package/rkoled/Config.in"
+
