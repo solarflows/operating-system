@@ -1,0 +1,12 @@
+[Unit]
+Description=rkoled - OLED Display Service for Panther X2
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/RTDevInfo
+Restart=on-failure
+User=root
+
+[Install]
+WantedBy=multi-user.target

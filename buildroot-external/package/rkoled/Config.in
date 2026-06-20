@@ -1,0 +1,8 @@
+# buildroot-external/package/rkoled/Config.in
+config BR2_PACKAGE_RKOLED
+    bool "rkoled"
+    depends on BR2_PACKAGE_SYSTEMD  # 依赖于systemd，保证开机自启
+    help
+      rkoled - A service for controlling 0.96inch OLED i2c display on Panther X2.
+
+      https://github.com/solarflows/rkoled

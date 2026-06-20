@@ -411,6 +411,10 @@ new file mode 100644
 +	};
 +};
 +
++&i2c1 {
++	status = "okay";
++};
++
 +&i2s1_8ch {
 +	pinctrl-names = "default";
 +	pinctrl-0 = <&i2s1m1_sclktx &i2s1m1_sclkrx

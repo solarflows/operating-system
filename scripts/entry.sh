@@ -6,6 +6,17 @@ USER="root"
 # Run dockerd
 dockerd -s vfs &> /dev/null &
 
+# set docker use proxy by default, to ensure buildx can pull images from the registry
+cat > /etc/docker/daemon.json <<'EOF'
+{
+  "data-root": "/var/lib/docker",
+  "proxies": {
+    "no-proxy": "*.local,localhost,127.0.0.0/8,*.lan",
+    "http-proxy": "http://10.0.189.1:10708",
+    "https-proxy": "http://10.0.189.1:10708"
+  }
+}
+EOF
 
 # Setup local group, if not existing
 if [ "${BUILDER_GID:-0}" -ne 0 ] && ! getent group "${BUILDER_GID:-0}"; then
