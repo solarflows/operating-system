@@ -178,6 +178,7 @@ jobs:
       - name: Download all built artifacts
         uses: actions/download-artifact@v4
         with:
+          pattern: 'haos_*'
           path: release-assets
           merge-multiple: true
 
