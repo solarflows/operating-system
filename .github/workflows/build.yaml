@@ -1,6 +1,6 @@
 name: OS build
 
-on:
+'on':
   workflow_dispatch:
     inputs:
       boards:
@@ -197,15 +197,22 @@ jobs:
             gh release upload "${TAG}" --clobber release-assets/*
           else
             echo "Creating draft release ${TAG}..."
+            cat <<'NOTES' > /tmp/release_notes.md
+          ### Home Assistant OS (Draft Release)
+
+          #### 固件校验和 (SHA-256)
+          ```
+          NOTES
+            cat release-assets/SHA256SUMS >> /tmp/release_notes.md
+            cat <<'NOTES' >> /tmp/release_notes.md
+          ```
+
+          > 该 Release 默认为 Draft 草稿状态，请在核验固件附件无误后手动点击「Publish release」发布转正。
+          NOTES
+
             gh release create "${TAG}" \
               --draft \
               --title "Home Assistant OS ${TAG}" \
-              --notes "### Home Assistant OS ${TAG} (Draft Release)
-
-#### 固件校验和 (SHA-256)
-\`\`\`
-$(cat release-assets/SHA256SUMS)
-\`\`\`
-> 该 Release 默认为 Draft 草稿状态，请在核验固件附件无误后手动点击「Publish release」发布转正。" \
+              --notes-file /tmp/release_notes.md \
               release-assets/*
           fi
