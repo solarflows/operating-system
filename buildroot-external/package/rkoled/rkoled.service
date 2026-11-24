@@ -5,7 +5,7 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/rkoled -s astra
+ExecStart=/usr/bin/rkoled -d /dev/i2c-1 -a 0x3c -t ssd1306 -s astra
 Restart=on-failure
 RestartSec=5s
 KillMode=process
