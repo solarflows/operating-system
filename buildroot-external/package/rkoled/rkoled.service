@@ -1,11 +1,14 @@
 [Unit]
 Description=rkoled - OLED Display Service for Panther X2
-After=network.target
+After=network.target network-online.target
+Wants=network-online.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/RTDevInfo
+ExecStart=/usr/bin/rkoled -s astra
 Restart=on-failure
+RestartSec=5s
+KillMode=process
 User=root
 
 [Install]
