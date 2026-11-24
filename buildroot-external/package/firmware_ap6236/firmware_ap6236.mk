@@ -21,6 +21,13 @@ define FIRMWARE_AP6236_INSTALL_TARGET_CMDS
 		$(TARGET_DIR)/usr/lib/firmware/brcm/BCM43430A1.hcd
 	$(INSTALL) -D -m 644 $(@D)/firmware/brcm/BCM43430A1.vim \
 		$(TARGET_DIR)/usr/lib/firmware/brcm/BCM43430A1.vim
+
+	# BCM43436 / BCM43430B0 compatibility aliases
+	ln -sf brcmfmac43430-sdio.bin $(TARGET_DIR)/usr/lib/firmware/brcm/brcmfmac43436-sdio.bin
+	ln -sf brcmfmac43430-sdio.txt $(TARGET_DIR)/usr/lib/firmware/brcm/brcmfmac43436-sdio.txt
+	ln -sf brcmfmac43430-sdio.panther,x2.bin $(TARGET_DIR)/usr/lib/firmware/brcm/brcmfmac43436-sdio.panther,x2.bin
+	ln -sf brcmfmac43430-sdio.panther,x2.txt $(TARGET_DIR)/usr/lib/firmware/brcm/brcmfmac43436-sdio.panther,x2.txt
+	ln -sf BCM43430A1.hcd $(TARGET_DIR)/usr/lib/firmware/brcm/BCM43430B0.hcd
 endef
 
 $(eval $(generic-package))
