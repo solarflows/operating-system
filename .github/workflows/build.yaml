@@ -204,6 +204,17 @@ jobs:
           if gh release view "${TAG}" >/dev/null 2>&1; then
             echo "Release ${TAG} already exists, uploading new assets..."
             gh release upload "${TAG}" --clobber release-assets/*
+            cat <<'NOTES' > /tmp/release_notes.md
+          ### Home Assistant OS (Release Assets)
+
+          #### 固件与缓存资产校验和 (SHA-256)
+          ```
+          NOTES
+            cat release-assets/SHA256SUMS >> /tmp/release_notes.md
+            cat <<'NOTES' >> /tmp/release_notes.md
+          ```
+          NOTES
+            gh release edit "${TAG}" --notes-file /tmp/release_notes.md
           else
             echo "Creating draft release ${TAG}..."
             cat <<'NOTES' > /tmp/release_notes.md
